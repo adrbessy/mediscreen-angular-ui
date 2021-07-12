@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import { PatientComponent } from './patient/patient.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    PatientComponent,
     PatientListComponent,
     PatientFormComponent,
     HeaderComponent,
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [PatientsService],
