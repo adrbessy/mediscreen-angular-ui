@@ -1,18 +1,7 @@
 <div class="container">
   <h3  class="text-center mt-4">Patient List</h3>
   <div class="row">
-    <a href="/patient/add" role="button" class="btn btn-primary ml-auto font-weight-bold px-4">Add New Patient</a>
-<!--
-    <app-patient *ngFor="let patient of patients;"
-                  [id]="patient.id"
-                  [given]="patient.given"
-                  [family]="patient.family"
-                  [dob]="patient.dob"
-                  [sex]="patient.sex"
-                  [address]="patient.address"
-                  [phone]="patient.phone">
-    </app-patient>
--->
+    <a routerLink="/add-patient" role="button" class="btn btn-primary ml-auto font-weight-bold px-4">Add New Patient</a>
 
     <table class="table table-bordered">
       <thead>
@@ -35,7 +24,7 @@
           <td>{{ patient.address }}</td>
           <td>{{ patient.phone }}</td>
           <td class="text-center">
-            <a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>
+            <a [routerLink]="[id]">Edit</a>
           </td>
         </tr>
       </tbody>

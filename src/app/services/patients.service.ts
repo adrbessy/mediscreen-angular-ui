@@ -10,43 +10,23 @@ import { Patient } from '../models/Patient.model';
 export class PatientsService {
   patientSubject = new Subject<any[]>();
 
-  private patients = [
-    {
-      id: 0,
-      given: 'Adrien',
-      family: 'Bessy',
-      dob: '1988/06/16',
-      sex: 'M'
-    }
-  ];
-
   constructor(private httpClient: HttpClient) { }
-
-  emitPatientSubject(){
-    this.patientSubject.next(this.patients.slice());
-  }
-
-  getPatientById(id: number) {
-    const patient = this.patients[id];
-    return patient;
-  }
-
-  getPatientsFromServer(){
-    this.httpClient
-      .get<any[]>('http://localhost:9010/patients')
-      .subscribe(
-        (response) => {
-          this.patients = response;
-          this.emitPatientSubject();
-        },
-        (error) => {
-          console.log('Erreur de chargement ! ' + error);
-        }
-      );
-  }
 
   getPatients(): Observable<Patient[]> {
     return this.httpClient.get<Patient[]>('http://localhost:9010/patients');
+  }
+
+  addPatient(newPatient: Patient){
+    this.httpClient
+      .post('http://localhost:9010/patient',newPatient)
+      .subscribe(
+        () => {
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur de sauvegarde !' + error);
+        }
+      );
   }
 
 }

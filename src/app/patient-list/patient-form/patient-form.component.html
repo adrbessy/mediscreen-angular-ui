@@ -1,1 +1,63 @@
-<p>patient-form works!</p>
+<div class="container">
+
+  <div class="row">
+    <h2>Add New Patient</h2>
+  </div>
+
+  <div class="row">
+    <form [formGroup]="patientForm" (ngSubmit)="onSubmitForm()" class="form-horizontal" style="width: 100%">
+      <div class="form-group">
+        <label for="given" class="col-sm-2 control-label">Given Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="given" id="given" placeholder="Given name" class="col-4">
+          <p class="text-danger" th:if="${#fields.hasErrors('given')}" th:errors="*{given}"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="family" class="col-sm-2 control-label">Family Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="family" id="family" placeholder="Family name" class="col-4">
+          <p class="text-danger" th:if="${#fields.hasErrors('family')}" th:errors="*{family}"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dob" class="col-sm-2 control-label">Birthdate</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="dob" id="dob" placeholder="yyyy-mm-dd" class="col-4">
+          <p class="text-danger" th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Sex</label>
+        <div class="col-sm-10">
+          <label class="checkbox-inline"><input type="radio" formControlName="sex" value="F">Female</label>
+          <label class="checkbox-inline"><input type="radio" formControlName="sex" value="M">Male</label>
+          <p class="text-danger" th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address" class="col-sm-2 control-label">Postal address</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="address" id="address" placeholder="Postal Address" class="col-4">
+          <p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">Phone number</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="phone" id="phone" placeholder="Phone number" class="col-4">
+          <p class="text-danger" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-12 btn-toolbar">
+          <a class="btn btn-danger btn-sm" routerLink="/patients">Cancel</a>
+          <input class="btn btn-primary btn-sm" type="submit" value="Add patient" [disabled]="patientForm.invalid">
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+</div>

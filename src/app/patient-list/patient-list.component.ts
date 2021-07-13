@@ -23,33 +23,20 @@ export class PatientListComponent implements OnInit {
 
   patients: any[] = [];
 
- patientSubscription: Subscription = new Subscription;
-
   constructor(private patientsService: PatientsService) { }
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   ngOnInit(){
-    /*
-    this.patientSubscription = this.patientsService.patientSubject.subscribe(
-      (patients: any[]) => {
-        this.patients = patients;
-      }
-    );
-    this.patientsService.emitPatientSubject();
-     */
     this.getAllPatients();
   }
 
-  onFetch() {
-    this.patientsService.getPatientsFromServer();
-  }
   getAllPatients() {
     this.patientsService.getPatients().pipe(takeUntil(this.destroy$)).subscribe(
       (patients) =>
-    {
-      this.patients = patients;
-    }
+      {
+        this.patients = patients;
+      }
     );
   }
 

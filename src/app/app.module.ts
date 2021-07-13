@@ -14,10 +14,15 @@ import { PatientComponent } from './patient/patient.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.component';
+import {AuthGuard} from "../../../mon-projet-angular/src/app/services/auth-guard.service";
+import {SingleAppareilComponent} from "../../../mon-projet-angular/src/app/single-appareil/single-appareil.component";
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
+  {path: 'patients/:id', component: EditPatientComponent},
   {path: '', component: PatientListComponent},
+  {path: 'add-patient', component: PatientFormComponent},
   {path: '**', redirectTo: '/not-found'}
 ];
 
@@ -28,7 +33,8 @@ const appRoutes: Routes = [
     PatientListComponent,
     PatientFormComponent,
     HeaderComponent,
-    PatientComponent
+    PatientComponent,
+    EditPatientComponent
   ],
   imports: [
     BrowserModule,
