@@ -28,12 +28,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let patient of patients;">
-          <td>{{ patient[given] }}</td>
-          <td>{{ patient[family] }}</td>
-          <td>{{ patient[dob] }}</td>
-          <td>{{ patient[sex] }}</td>
-          <td>{{ patient[address] }}</td>
-          <td>{{ patient[phone] }}</td>
+          <td>{{ patient.given }}</td>
+          <td>{{ patient.family }}</td>
+          <td>{{ patient.dob }}</td>
+          <td>{{ patient.sex }}</td>
+          <td>{{ patient.address }}</td>
+          <td>{{ patient.phone }}</td>
           <td class="text-center">
             <a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>
           </td>
