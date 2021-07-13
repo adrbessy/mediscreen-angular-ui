@@ -12,6 +12,8 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import { PatientComponent } from './patient/patient.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { MatTableModule } from '@angular/material/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
@@ -34,7 +36,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    MatTableModule,
+    RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule
   ],
   providers: [PatientsService],
   bootstrap: [AppComponent]

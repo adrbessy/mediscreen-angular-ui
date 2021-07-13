@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/Subject";
 import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs/Rx";
+import { Patient } from '../models/Patient.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PatientsService {
   patientSubject = new Subject<any[]>();
 
@@ -27,7 +31,7 @@ export class PatientsService {
     return patient;
   }
 
-  getAppareilsFromServer(){
+  getPatientsFromServer(){
     this.httpClient
       .get<any[]>('http://localhost:9010/patients')
       .subscribe(
@@ -39,6 +43,10 @@ export class PatientsService {
           console.log('Erreur de chargement ! ' + error);
         }
       );
+  }
+
+  getPatients(): Observable<Patient[]> {
+    return this.httpClient.get<Patient[]>('http://localhost:9010/patients');
   }
 
 }

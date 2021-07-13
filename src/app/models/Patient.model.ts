@@ -1,4 +1,4 @@
-export class User {
+export class Patient {
   constructor(
     public id: number,
     public given: string,

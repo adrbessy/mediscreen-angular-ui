@@ -1,14 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PatientsService } from '../services/patients.service';
 import {Subscription} from "rxjs/Subscription";
-import {AppareilService} from "../../../../mon-projet-angular/src/app/services/appareil.service";
+import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-patient-list',
   templateUrl: './patient-list.component.html',
   styleUrls: ['./patient-list.component.scss']
 })
+
 export class PatientListComponent implements OnInit {
+
+  @Input() id: number = 0;
+  @Input() given: string = '';
+  @Input() family: string = '';
+  @Input() dob: string = '';
+  @Input() sex: string = '';
+  @Input() address: string = '';
+  @Input() phone: string = '';
 
   patients: any[] = [];
 
@@ -16,17 +27,31 @@ export class PatientListComponent implements OnInit {
 
   constructor(private patientsService: PatientsService) { }
 
+  destroy$: Subject<boolean> = new Subject<boolean>();
+
   ngOnInit(){
+    /*
     this.patientSubscription = this.patientsService.patientSubject.subscribe(
       (patients: any[]) => {
         this.patients = patients;
       }
     );
     this.patientsService.emitPatientSubject();
+     */
+    this.getAllPatients();
   }
 
   onFetch() {
-    this.patientsService.getAppareilsFromServer();
+    this.patientsService.getPatientsFromServer();
   }
+  getAllPatients() {
+    this.patientsService.getPatients().pipe(takeUntil(this.destroy$)).subscribe(
+      (patients) =>
+    {
+      this.patients = patients;
+    }
+    );
+  }
+
 
 }

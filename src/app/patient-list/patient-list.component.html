@@ -2,7 +2,7 @@
   <h3  class="text-center mt-4">Patient List</h3>
   <div class="row">
     <a href="/patient/add" role="button" class="btn btn-primary ml-auto font-weight-bold px-4">Add New Patient</a>
-
+<!--
     <app-patient *ngFor="let patient of patients;"
                   [id]="patient.id"
                   [given]="patient.given"
@@ -12,6 +12,34 @@
                   [address]="patient.address"
                   [phone]="patient.phone">
     </app-patient>
+-->
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Given name</th>
+          <th>Family name</th>
+          <th>Birthdate</th>
+          <th>Sex</th>
+          <th>Postal address</th>
+          <th>Phone number</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients;">
+          <td>{{ patient[given] }}</td>
+          <td>{{ patient[family] }}</td>
+          <td>{{ patient[dob] }}</td>
+          <td>{{ patient[sex] }}</td>
+          <td>{{ patient[address] }}</td>
+          <td>{{ patient[phone] }}</td>
+          <td class="text-center">
+            <a th:href="@{/patient/update/{id}(id=${patient.id})}">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
   </div>
 </div>
