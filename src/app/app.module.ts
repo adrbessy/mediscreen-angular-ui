@@ -17,13 +17,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.component';
 import {AuthGuard} from "../../../mon-projet-angular/src/app/services/auth-guard.service";
 import {SingleAppareilComponent} from "../../../mon-projet-angular/src/app/single-appareil/single-appareil.component";
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
   {path: 'patients/:id', component: EditPatientComponent},
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
-  {path: '**', redirectTo: '/not-found'}
+  {path: '**', component: NotFoundComponent}
 ];
 
 @NgModule({
@@ -34,7 +35,8 @@ const appRoutes: Routes = [
     PatientFormComponent,
     HeaderComponent,
     PatientComponent,
-    EditPatientComponent
+    EditPatientComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

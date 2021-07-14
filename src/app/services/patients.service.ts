@@ -40,4 +40,17 @@ export class PatientsService {
       );
   }
 
+  updatePatient(id: number,editedPatient: Patient){
+    this.httpClient
+      .put('http://localhost:9010/patient/'+id, editedPatient)
+      .subscribe(
+        () => {
+          console.log('Modification terminé !');
+        },
+        (error) => {
+          console.log('Erreur de modification !' + error);
+        }
+      );
+  }
+
 }

@@ -47,6 +47,7 @@ export class EditPatientComponent implements OnInit {
   }
 
   onSubmitForm(){
+    const id = this.route.snapshot.params['id'];
     const formValue = this.patientEditForm.value;
     const newPatient = new Patient(
       formValue['given'],
@@ -56,7 +57,7 @@ export class EditPatientComponent implements OnInit {
       formValue['address'] ? formValue['address'] : '',
       formValue['phone'] ? formValue['phone'] : ''
     );
-    this.patientsService.addPatient(newPatient);
+    this.patientsService.updatePatient(id,newPatient);
     this.router.navigate(['/patients']);
   }
 
