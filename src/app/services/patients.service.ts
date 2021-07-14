@@ -27,17 +27,9 @@ export class PatientsService {
     return this.httpClient.get('http://localhost:9010/patient', {params: httpParams});
   }
 
-  addPatient(newPatient: Patient){
-    this.httpClient
-      .post('http://localhost:9010/patient',newPatient)
-      .subscribe(
-        () => {
-          console.log('Enregistrement terminé !');
-        },
-        (error) => {
-          console.log('Erreur de sauvegarde !' + error);
-        }
-      );
+  addPatient(newPatient: Patient): Observable<boolean>{
+    return this.httpClient
+      .post<boolean>('http://localhost:9010/patient',newPatient);
   }
 
   updatePatient(id: number,editedPatient: Patient){

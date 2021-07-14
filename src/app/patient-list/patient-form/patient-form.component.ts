@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {User} from "../../../../../mon-projet-angular/src/app/models/User.model";
 import {Router} from "@angular/router";
 import { Patient } from 'src/app/models/Patient.model';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-patient-form',
@@ -14,6 +16,7 @@ import { Patient } from 'src/app/models/Patient.model';
 export class PatientFormComponent implements OnInit {
 
   patientForm!: FormGroup;
+  destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private formBuilder: FormBuilder,
               private patientsService: PatientsService,
@@ -44,8 +47,18 @@ export class PatientFormComponent implements OnInit {
       formValue['address'] ? formValue['address'] : '',
       formValue['phone'] ? formValue['phone'] : ''
     );
-    this.patientsService.addPatient(newPatient);
-    this.router.navigate(['/patients']);
+    this.createNewPatientPatient(newPatient);
+  }
+
+  createNewPatientPatient(newPatient: Patient) {
+    this.patientsService.addPatient(newPatient).pipe(takeUntil(this.destroy$)).subscribe(
+      (response) =>
+      {
+        if (response){
+          this.router.navigate(['/patients']);
+        }
+      }
+    );
   }
 
 }
