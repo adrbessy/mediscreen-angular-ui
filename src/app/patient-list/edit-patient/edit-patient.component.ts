@@ -24,25 +24,25 @@ export class EditPatientComponent implements OnInit {
               private route: ActivatedRoute) { }
 
   ngOnInit(){
-    this.initForm();
     const id = this.route.snapshot.params['id'];
     this.patientsService.getPatient(+id).pipe(takeUntil(this.destroy$)).subscribe(
       (patient) => {
         this.patient = patient;
         console.log(this.patient);
         console.log(this.patient.given);
+        this.initForm(this.patient);
       }
     );
   }
 
-  initForm(){
+  initForm(patient: any){
     this.patientEditForm = this.formBuilder.group({
-      given: ['',Validators.required],
-      family: ['',Validators.required],
-      dob: ['',[Validators.required, Validators.pattern("^[0-9]{4}(-)[0-9]{2}(-)[0-9]{2}$")]],
-      sex: ['',Validators.required],
-      address: [''],
-      phone: ['']
+      given: [patient.given,Validators.required],
+      family: [patient.family,Validators.required],
+      dob: [patient.dob,[Validators.required, Validators.pattern("^[0-9]{4}(-)[0-9]{2}(-)[0-9]{2}$")]],
+      sex: [patient.sex,Validators.required],
+      address: [patient.address],
+      phone: [patient.phone]
     })
   }
 

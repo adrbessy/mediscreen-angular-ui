@@ -5,7 +5,7 @@
   </div>
 
   <div class="row">
-    <form [formGroup]="patientEditForm" (ngSubmit)="onSubmitForm()" class="form-horizontal" style="width: 100%">
+    <form *ngIf="patient" [formGroup]="patientEditForm" (ngSubmit)="onSubmitForm()" class="form-horizontal" style="width: 100%">
       <div class="form-group">
         <label for="given" class="col-sm-2 control-label">Given Name</label>
         <div class="col-sm-10">
@@ -54,5 +54,4 @@
     </form>
 
   </div>
-
 </div>
