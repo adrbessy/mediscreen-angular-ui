@@ -17,6 +17,7 @@ export class EditPatientComponent implements OnInit {
   patient: any;
   given: string = '';
   destroy$: Subject<boolean> = new Subject<boolean>();
+  patientAlreadySaved: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private patientsService: PatientsService,
@@ -65,6 +66,10 @@ export class EditPatientComponent implements OnInit {
         if (response){
           this.router.navigate(['/patients']);
         }
+      },
+      (error) => {
+        console.log('Error of edition !');
+        this.patientAlreadySaved = true;
       }
     );
   }

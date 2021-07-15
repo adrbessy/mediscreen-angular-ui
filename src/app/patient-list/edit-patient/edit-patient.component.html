@@ -56,6 +56,10 @@
         </div>
       </div>
 
+      <div *ngIf="patientAlreadySaved" class="text-danger">
+        This patient already exists.
+      </div>
+
       <div class="form-group">
         <div class="col-sm-12 btn-toolbar">
           <a class="btn btn-danger btn-sm" routerLink="/patients">Cancel</a>
