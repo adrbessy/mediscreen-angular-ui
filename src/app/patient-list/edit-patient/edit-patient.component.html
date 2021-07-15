@@ -5,30 +5,42 @@
   </div>
 
   <div class="row">
-    <form *ngIf="patient" [formGroup]="patientEditForm" (ngSubmit)="onSubmitForm()" class="form-horizontal" style="width: 100%">
+    <form *ngIf="patient" [formGroup]="patientEditForm" (ngSubmit)="onSubmitForm()" #localForm="ngForm" class="form-horizontal" style="width: 100%">
       <div class="form-group">
-        <label for="given" class="col-sm-2 control-label">Given Name</label>
+        <label for="given" class="col-sm-2 control-label required">Given Name</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" formControlName="given" id="given" placeholder="Given name" class="col-4">
+          <div *ngIf="localForm.submitted && patientEditForm.get('given')?.invalid" class="text-danger">
+            Given name is required
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="family" class="col-sm-2 control-label">Family Name</label>
+        <label for="family" class="col-sm-2 control-label required">Family Name</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" formControlName="family" id="family" placeholder="Family name" class="col-4">
+          <div *ngIf="localForm.submitted && patientEditForm.get('family')?.invalid" class="text-danger">
+            Family name is required
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label for="dob" class="col-sm-2 control-label">Birthdate</label>
+        <label for="dob" class="col-sm-2 control-label required">Birthdate</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" formControlName="dob" id="dob" placeholder="yyyy-mm-dd" class="col-4">
+          <div *ngIf="localForm.submitted && patientEditForm.get('dob')?.invalid" class="text-danger">
+            The correct format of the birthdate has to be in yyyy-mm-dd.
+          </div>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-sm-2 control-label">Sex</label>
+        <label class="col-sm-2 control-label required">Sex</label>
         <div class="col-sm-10">
           <label class="checkbox-inline"><input type="radio" formControlName="sex" value="F">Female</label>
           <label class="checkbox-inline"><input type="radio" formControlName="sex" value="M">Male</label>
+          <div *ngIf="localForm.submitted && patientEditForm.get('sex')?.invalid" class="text-danger">
+            Sex is required
+          </div>
         </div>
       </div>
       <div class="form-group">
@@ -47,7 +59,7 @@
       <div class="form-group">
         <div class="col-sm-12 btn-toolbar">
           <a class="btn btn-danger btn-sm" routerLink="/patients">Cancel</a>
-          <input class="btn btn-primary btn-sm" type="submit" value="Edit patient" [disabled]="patientEditForm.invalid">
+          <input class="btn btn-primary btn-sm" type="submit" value="Edit patient">
         </div>
       </div>
 
