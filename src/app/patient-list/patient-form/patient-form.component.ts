@@ -17,6 +17,7 @@ export class PatientFormComponent implements OnInit {
 
   patientForm!: FormGroup;
   destroy$: Subject<boolean> = new Subject<boolean>();
+  patientAlreadySaved: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
               private patientsService: PatientsService,
@@ -57,6 +58,10 @@ export class PatientFormComponent implements OnInit {
         if (response){
           this.router.navigate(['/patients']);
         }
+      },
+      (error) => {
+        console.log('Erreur de sauvegarde !' + error);
+        this.patientAlreadySaved = true;
       }
     );
   }
