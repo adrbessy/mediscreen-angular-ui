@@ -28,8 +28,6 @@ export class EditPatientComponent implements OnInit {
     this.patientsService.getPatient(+id).pipe(takeUntil(this.destroy$)).subscribe(
       (patient) => {
         this.patient = patient;
-        console.log(this.patient);
-        console.log(this.patient.given);
         this.initForm(this.patient);
       }
     );
@@ -49,7 +47,7 @@ export class EditPatientComponent implements OnInit {
   onSubmitForm(){
     const id = this.route.snapshot.params['id'];
     const formValue = this.patientEditForm.value;
-    const newPatient = new Patient(
+    const updatedPatient = new Patient(
       formValue['given'],
       formValue['family'],
       formValue['dob'],
@@ -57,8 +55,18 @@ export class EditPatientComponent implements OnInit {
       formValue['address'] ? formValue['address'] : '',
       formValue['phone'] ? formValue['phone'] : ''
     );
-    this.patientsService.updatePatient(id,newPatient);
-    this.router.navigate(['/patients']);
+    this.updatePatient(id, updatedPatient);
+  }
+
+  updatePatient(id: number, updatedPatient: Patient) {
+    this.patientsService.updatePatient(id,updatedPatient).pipe(takeUntil(this.destroy$)).subscribe(
+      (response) =>
+      {
+        if (response){
+          this.router.navigate(['/patients']);
+        }
+      }
+    );
   }
 
 }

@@ -18,7 +18,6 @@ export class PatientsService {
   }
 
   getPatient(id: number){
-    console.log(id);
     const httpParams = new HttpParams({
       fromObject: {
         id: id
@@ -32,17 +31,9 @@ export class PatientsService {
       .post<boolean>('http://localhost:9010/patient',newPatient);
   }
 
-  updatePatient(id: number,editedPatient: Patient){
-    this.httpClient
-      .put('http://localhost:9010/patient/'+id, editedPatient)
-      .subscribe(
-        () => {
-          console.log('Modification terminé !');
-        },
-        (error) => {
-          console.log('Erreur de modification !' + error);
-        }
-      );
+  updatePatient(id: number,editedPatient: Patient): Observable<boolean>{
+    return this.httpClient
+      .put<boolean>('http://localhost:9010/patient/'+id, editedPatient);
   }
 
 }
