@@ -15,8 +15,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.component';
-import {AuthGuard} from "../../../mon-projet-angular/src/app/services/auth-guard.service";
-import {SingleAppareilComponent} from "../../../mon-projet-angular/src/app/single-appareil/single-appareil.component";
 import { NotFoundComponent } from './not-found/not-found.component';
 
 const appRoutes: Routes = [

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientsService } from 'src/app/services/patients.service';
-import {AppareilService} from "../../../../../mon-projet-angular/src/app/services/appareil.service";
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
-import {User} from "../../../../../mon-projet-angular/src/app/models/User.model";
 import {Router} from "@angular/router";
 import { Patient } from 'src/app/models/Patient.model';
 import { Subject } from 'rxjs';
