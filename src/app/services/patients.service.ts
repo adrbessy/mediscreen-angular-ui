@@ -4,17 +4,19 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Rx";
 import { Patient } from '../models/Patient.model';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatientsService {
   patientSubject = new Subject<any[]>();
+  private baseUrl = environment.apiUrlPatient;
 
   constructor(private httpClient: HttpClient) { }
 
   getPatients(): Observable<Patient[]> {
-    return this.httpClient.get<Patient[]>('http://localhost:9010/patients');
+    return this.httpClient.get<Patient[]>(this.baseUrl + '/patients');
   }
 
   getPatient(id: number){
@@ -23,17 +25,17 @@ export class PatientsService {
         id: id
       }
     });
-    return this.httpClient.get('http://localhost:9010/patient', {params: httpParams});
+    return this.httpClient.get(this.baseUrl + '/patient', {params: httpParams});
   }
 
   addPatient(newPatient: Patient): Observable<boolean>{
     return this.httpClient
-      .post<boolean>('http://localhost:9010/patient',newPatient);
+      .post<boolean>(this.baseUrl + '/patient',newPatient);
   }
 
   updatePatient(id: number,editedPatient: Patient): Observable<boolean>{
     return this.httpClient
-      .put<boolean>('http://localhost:9010/patient/'+id, editedPatient);
+      .put<boolean>(this.baseUrl + '/patient/'+id, editedPatient);
   }
 
 }

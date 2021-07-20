@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrlPatient :'http://mediscreen-patient:9010'
 };
