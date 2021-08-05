@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -11,8 +11,13 @@ import { NotesService } from '../services/notes.service';
 })
 export class NoteListComponent implements OnInit {
 
+  @Input() id: string = '';
+  @Input() patientId: number = 0;
+  @Input() date: string = '';
+  @Input() note: string = '';
+
   destroy$: Subject<boolean> = new Subject<boolean>();
-  notes: any;
+  notes: any[] = [];
 
   constructor(private notesService: NotesService,
               private route: ActivatedRoute) { }

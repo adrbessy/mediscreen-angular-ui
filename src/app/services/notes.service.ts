@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Rx";
 import { Note } from '../models/Note.model';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Patient } from '../models/Patient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,13 @@ export class NotesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getNotes(patientId: number){
+  getNotes(patientId: number): Observable<Patient[]>{
     const httpParams = new HttpParams({
       fromObject: {
         patientId: patientId
       }
     });
-    return this.httpClient.get(this.baseUrl + '/notes', {params: httpParams});
+    return this.httpClient.get<Patient[]>(this.baseUrl + '/notes', {params: httpParams});
   }
 
 }
