@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NotesService } from '../services/notes.service';
@@ -18,8 +18,10 @@ export class NoteListComponent implements OnInit {
 
   destroy$: Subject<boolean> = new Subject<boolean>();
   notes: any[] = [];
+  iden = this.route.snapshot.params['id'];
 
   constructor(private notesService: NotesService,
+              private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class NoteListComponent implements OnInit {
         this.notes = notes;
       }
     );
+  }
+
+  addNote(){
+    this.router.navigate(['/add-note', this.iden]);
   }
 
 }

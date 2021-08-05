@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoteListComponent } from './note-list/note-list.component';
+import { NoteFormComponent } from './note-list/note-form/note-form.component';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
   {path: 'notes/:id', component: NoteListComponent},
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
+  {path: 'add-note/:iden', component: NoteFormComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -34,11 +36,13 @@ const appRoutes: Routes = [
     PatientComponent,
     PatientListComponent,
     PatientFormComponent,
+    NoteFormComponent,
     HeaderComponent,
     PatientComponent,
     EditPatientComponent,
     NotFoundComponent,
-    NoteListComponent
+    NoteListComponent,
+    NoteFormComponent
   ],
   imports: [
     BrowserModule,

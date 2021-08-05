@@ -46,10 +46,10 @@ export class PatientFormComponent implements OnInit {
       formValue['address'] ? formValue['address'] : '',
       formValue['phone'] ? formValue['phone'] : ''
     );
-    this.createNewPatientPatient(newPatient);
+    this.createNewPatient(newPatient);
   }
 
-  createNewPatientPatient(newPatient: Patient) {
+  createNewPatient(newPatient: Patient) {
     this.patientsService.addPatient(newPatient).pipe(takeUntil(this.destroy$)).subscribe(
       (response) =>
       {
