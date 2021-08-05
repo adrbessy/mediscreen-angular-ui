@@ -25,4 +25,9 @@ export class NotesService {
     return this.httpClient.get<Patient[]>(this.baseUrl + '/notes', {params: httpParams});
   }
 
+  addNote(newNote: Note): Observable<boolean>{
+    return this.httpClient
+      .post<boolean>(this.baseUrl + '/note',newNote);
+  }
+
 }
