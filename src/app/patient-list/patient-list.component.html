@@ -13,6 +13,7 @@
           <th>Postal address</th>
           <th>Phone number</th>
           <th>Action</th>
+          <th>notes</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,9 @@
           <td>{{ patient.phone }}</td>
           <td class="text-center">
             <a [routerLink]="[patient.id]">Edit</a>
+          </td>
+          <td class="text-center">
+            <button (click)="goToNotes(patient.id)">See notes</button>
           </td>
         </tr>
       </tbody>

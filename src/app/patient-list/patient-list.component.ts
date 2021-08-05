@@ -4,6 +4,7 @@ import {Subscription} from "rxjs/Subscription";
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list',
@@ -23,7 +24,8 @@ export class PatientListComponent implements OnInit {
 
   patients: any[] = [];
 
-  constructor(private patientsService: PatientsService) { }
+  constructor(private patientsService: PatientsService,
+              private router: Router) { }
 
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -38,6 +40,10 @@ export class PatientListComponent implements OnInit {
         this.patients = patients;
       }
     );
+  }
+
+  goToNotes(id: number){
+    this.router.navigate(['/notes', id]);
   }
 
 

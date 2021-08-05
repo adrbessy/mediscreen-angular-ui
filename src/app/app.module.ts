@@ -16,10 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NoteListComponent } from './note-list/note-list.component';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
   {path: 'patients/:id', component: EditPatientComponent},
+  {path: 'notes', component: NoteListComponent},
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
   {path: '**', component: NotFoundComponent}
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     PatientComponent,
     EditPatientComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    NoteListComponent
   ],
   imports: [
     BrowserModule,
