@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { NotesService } from '../services/notes.service';
 
 @Component({
   selector: 'app-note-list',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteListComponent implements OnInit {
 
-  constructor() { }
+  destroy$: Subject<boolean> = new Subject<boolean>();
+  notes: any;
+
+  constructor(private notesService: NotesService,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getNotes();
+  }
+
+  getNotes() {
+    const id = this.route.snapshot.params['id'];
+    this.notesService.getNotes(+id).pipe(takeUntil(this.destroy$)).subscribe(
+      (notes) =>
+      {
+        this.notes = notes;
+      }
+    );
   }
 
 }

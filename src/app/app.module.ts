@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import {PatientsService} from './services/patients.service';
+import {NotesService} from './services/notes.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,7 @@ import { NoteListComponent } from './note-list/note-list.component';
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
   {path: 'patients/:id', component: EditPatientComponent},
-  {path: 'notes', component: NoteListComponent},
+  {path: 'notes/:id', component: NoteListComponent},
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
   {path: '**', component: NotFoundComponent}
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule
   ],
-  providers: [PatientsService],
+  providers: [PatientsService,NotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
