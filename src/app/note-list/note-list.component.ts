@@ -42,4 +42,8 @@ export class NoteListComponent implements OnInit {
     this.router.navigate(['/add-note', this.iden]);
   }
 
+  goToEdit(noteId: number, patientId: String){
+    this.router.navigate(['/edit-note', patientId,noteId]);
+  }
+
 }

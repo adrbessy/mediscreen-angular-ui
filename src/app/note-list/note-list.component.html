@@ -19,7 +19,8 @@
         <td>{{ note.date }}</td>
         <td>{{ note.note }}</td>
         <td class="text-center">
-          <a [routerLink]="[note.id]">Edit</a>
+          <!--<a [routerLink]="[note.id]">Edit</a>-->
+          <button class="btn btn-edit" (click)="goToEdit(note.id,note.patientId)">edit</button>
         </td>
         <td class="text-center">
           <a [routerLink]="[note.id]">Delete</a>

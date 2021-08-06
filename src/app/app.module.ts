@@ -19,6 +19,7 @@ import { EditPatientComponent } from './patient-list/edit-patient/edit-patient.c
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NoteFormComponent } from './note-list/note-form/note-form.component';
+import { EditNoteComponent } from './note-list/edit-note/edit-note.component';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
   {path: 'add-note/:iden', component: NoteFormComponent},
+  {path: 'edit-note/:patientId/:noteId', component: EditNoteComponent},
   {path: '**', component: NotFoundComponent}
 ];
 
@@ -42,7 +44,8 @@ const appRoutes: Routes = [
     EditPatientComponent,
     NotFoundComponent,
     NoteListComponent,
-    NoteFormComponent
+    NoteFormComponent,
+    EditNoteComponent
   ],
   imports: [
     BrowserModule,

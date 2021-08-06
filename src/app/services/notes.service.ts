@@ -30,4 +30,18 @@ export class NotesService {
       .post<boolean>(this.baseUrl + '/note',newNote);
   }
 
+  getNote(id: number){
+    const httpParams = new HttpParams({
+      fromObject: {
+        id: id
+      }
+    });
+    return this.httpClient.get(this.baseUrl + '/note', {params: httpParams});
+  }
+
+  updateNote(id: String, editedNote: Note): Observable<boolean>{
+    return this.httpClient
+      .put<boolean>(this.baseUrl + '/note/'+id, editedNote);
+  }
+
 }
