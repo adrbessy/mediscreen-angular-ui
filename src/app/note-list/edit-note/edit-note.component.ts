@@ -63,4 +63,8 @@ export class EditNoteComponent implements OnInit {
     );
   }
 
+  returnToNotes(){
+    this.router.navigate(['/notes', this.patientId]);
+  }
+
 }

@@ -30,7 +30,7 @@ export class NotesService {
       .post<boolean>(this.baseUrl + '/note',newNote);
   }
 
-  getNote(id: number){
+  getNote(id: string){
     const httpParams = new HttpParams({
       fromObject: {
         id: id
@@ -42,6 +42,15 @@ export class NotesService {
   updateNote(id: String, editedNote: Note): Observable<boolean>{
     return this.httpClient
       .put<boolean>(this.baseUrl + '/note/'+id, editedNote);
+  }
+
+  deleteNote(id: string){
+    const httpParams = new HttpParams({
+      fromObject: {
+        id: id
+      }
+    });
+    return this.httpClient.delete(this.baseUrl + '/note', {params: httpParams});
   }
 
 }

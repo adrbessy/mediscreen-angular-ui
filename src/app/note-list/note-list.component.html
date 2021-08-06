@@ -23,7 +23,7 @@
           <button class="btn btn-edit" (click)="goToEdit(note.id,note.patientId)">edit</button>
         </td>
         <td class="text-center">
-          <a [routerLink]="[note.id]">Delete</a>
+          <button class="btn btn-danger" (click)="goToDelete(note.id)">delete</button>
         </td>
       </tr>
       </tbody>

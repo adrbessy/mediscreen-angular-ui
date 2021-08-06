@@ -42,8 +42,24 @@ export class NoteListComponent implements OnInit {
     this.router.navigate(['/add-note', this.iden]);
   }
 
-  goToEdit(noteId: number, patientId: String){
-    this.router.navigate(['/edit-note', patientId,noteId]);
+  goToEdit(noteId: string, patientId: number){
+    this.router.navigate(['/edit-note', patientId, noteId]);
+  }
+
+  goToDelete(noteId: string){
+    if(confirm("Are you sure to delete this note")) {
+      console.log("Put a message here.");
+      this.notesService.deleteNote(noteId).pipe(takeUntil(this.destroy$)).subscribe(
+        (reponse) =>
+        {
+          console.log("Yes!");
+          location.reload();
+        },
+        (error) => {
+          console.log('Erreur de sauvegarde !' + error);
+        }
+      );
+    }
   }
 
 }
