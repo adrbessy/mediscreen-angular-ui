@@ -19,6 +19,7 @@ export class NoteListComponent implements OnInit {
   destroy$: Subject<boolean> = new Subject<boolean>();
   notes: any[] = [];
   iden = this.route.snapshot.params['id'];
+  emptyList: boolean = true;
 
   constructor(private notesService: NotesService,
               private router: Router,
@@ -34,6 +35,9 @@ export class NoteListComponent implements OnInit {
       (notes) =>
       {
         this.notes = notes;
+        if(this.notes.length!=0){
+          this.emptyList = false;
+        }
       }
     );
   }

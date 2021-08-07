@@ -69,7 +69,9 @@ export class EditPatientComponent implements OnInit {
       },
       (error) => {
         console.log('Error of edition !');
-        this.patientAlreadySaved = true;
+        if(error!="emptyFields"){
+          this.patientAlreadySaved = true;
+        }
       }
     );
   }
