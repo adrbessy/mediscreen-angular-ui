@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrlPatient :'http://localhost:9010',
-  apiUrlNote :'http://localhost:9011'
+  apiUrlNote :'http://localhost:9011',
+  apiUrlReport :'http://localhost:9012'
 };
 
 /*

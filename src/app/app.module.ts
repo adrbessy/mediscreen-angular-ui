@@ -20,10 +20,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { NoteListComponent } from './note-list/note-list.component';
 import { NoteFormComponent } from './note-list/note-form/note-form.component';
 import { EditNoteComponent } from './note-list/edit-note/edit-note.component';
+import { DiabeteReportComponent } from './diabete-report/diabete-report.component';
 
 const appRoutes: Routes = [
   {path: 'patients', component: PatientListComponent},
   {path: 'patients/:id', component: EditPatientComponent},
+  {path: 'report/:id', component: DiabeteReportComponent},
   {path: 'notes/:id', component: NoteListComponent},
   {path: '', component: PatientListComponent},
   {path: 'add-patient', component: PatientFormComponent},
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     NotFoundComponent,
     NoteListComponent,
     NoteFormComponent,
-    EditNoteComponent
+    EditNoteComponent,
+    DiabeteReportComponent
   ],
   imports: [
     BrowserModule,

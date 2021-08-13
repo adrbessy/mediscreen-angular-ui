@@ -46,5 +46,25 @@ export class PatientListComponent implements OnInit {
     this.router.navigate(['/notes', id]);
   }
 
+  goToDelete(id: number){
+    if(confirm("Are you sure to delete the information about this patient")) {
+      this.patientsService.deletePatient(id).pipe(takeUntil(this.destroy$)).subscribe(
+        (reponse) =>
+        {
+          location.reload();
+        },
+        (error) => {
+          console.log('Erreur !' + error);
+        }
+      );
+    }
+  }
+
+  goToEdit(id: number){
+    this.router.navigate(['/patients', id]);
+  }
+  goToReport(id: number){
+    this.router.navigate(['/report', id]);
+  }
 
 }

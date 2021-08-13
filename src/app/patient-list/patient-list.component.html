@@ -6,14 +6,15 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Given name</th>
-          <th>Family name</th>
-          <th>Birthdate</th>
-          <th>Sex</th>
-          <th>Postal address</th>
-          <th>Phone number</th>
-          <th>Action</th>
-          <th>notes</th>
+          <th class="text-center">Given name</th>
+          <th class="text-center">Family name</th>
+          <th class="text-center">Birthdate</th>
+          <th class="text-center">Sex</th>
+          <th class="text-center">Postal address</th>
+          <th class="text-center">Phone number</th>
+          <th class="text-center">Action</th>
+          <th class="text-center">notes</th>
+          <th class="text-center">Diabete report</th>
         </tr>
       </thead>
       <tbody>
@@ -25,10 +26,15 @@
           <td>{{ patient.address }}</td>
           <td>{{ patient.phone }}</td>
           <td class="text-center">
-            <a [routerLink]="[patient.id]">Edit</a>
+            <button class="btn btn-primary" (click)="goToEdit(patient.id)">Edit</button>
+            &nbsp;
+            <button class="btn btn-danger" (click)="goToDelete(patient.id)">Delete</button>
           </td>
           <td class="text-center">
             <button (click)="goToNotes(patient.id)">See notes</button>
+          </td>
+          <td class="text-center">
+            <button (click)="goToReport(patient.id)">See report</button>
           </td>
         </tr>
       </tbody>

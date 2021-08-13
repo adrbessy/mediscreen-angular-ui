@@ -9,23 +9,15 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PatientsService {
+export class ReportService {
   patientSubject = new Subject<any[]>();
-  private baseUrl = environment.apiUrlPatient;
+  private baseUrl = environment.apiUrlReport;
 
   constructor(private httpClient: HttpClient) { }
 
-  getPatients(): Observable<Patient[]> {
-    return this.httpClient.get<Patient[]>(this.baseUrl + '/patients');
-  }
-
-  getPatient(id: number){
-    const httpParams = new HttpParams({
-      fromObject: {
-        id: id
-      }
-    });
-    return this.httpClient.get(this.baseUrl + '/patient', {params: httpParams});
+  generateReport(id: number): Observable<string>{
+    return this.httpClient.get(this.baseUrl + '/assess?patientId=' + id,
+      {responseType: 'text'});
   }
 
   addPatient(newPatient: Patient): Observable<boolean>{
@@ -36,15 +28,6 @@ export class PatientsService {
   updatePatient(id: number,editedPatient: Patient): Observable<boolean>{
     return this.httpClient
       .put<boolean>(this.baseUrl + '/patient/'+id, editedPatient).catch(this.handleError);
-  }
-
-  deletePatient(id: number){
-    const httpParams = new HttpParams({
-      fromObject: {
-        id: id
-      }
-    });
-    return this.httpClient.delete(this.baseUrl + '/patient', {params: httpParams});
   }
 
   handleError(error: Response) {
