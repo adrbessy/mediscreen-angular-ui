@@ -58,8 +58,8 @@ export class PatientFormComponent implements OnInit {
         }
       },
       (error) => {
-        console.log('Erreur de sauvegarde !' + error);
-        if(error!="emptyFields"){
+        //console.log('Erreur de sauvegarde ! : ' + error.error.message);
+        if(error=="alreadyExists"){
           this.patientAlreadySaved = true;
         }
       }

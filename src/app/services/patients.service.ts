@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs/Subject";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Rx";
 import { Patient } from '../models/Patient.model';
 import { map } from 'rxjs/operators';
@@ -47,9 +47,9 @@ export class PatientsService {
     return this.httpClient.delete(this.baseUrl + '/patient', {params: httpParams});
   }
 
-  handleError(error: Response) {
-    if (error.status == 400) {
-      return Observable.throw("emptyFields");
+  handleError(error: HttpErrorResponse) {
+    if (error.error.message == "This patient already exists.") {
+      return Observable.throw("alreadyExists");
     } else {
       return Observable.throw(error);
     }
