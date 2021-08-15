@@ -48,7 +48,7 @@ export class PatientsService {
   }
 
   handleError(error: Response) {
-    if (error.status == 500 || error.status == 400) {
+    if (error.status == 400) {
       return Observable.throw("emptyFields");
     } else {
       return Observable.throw(error);
