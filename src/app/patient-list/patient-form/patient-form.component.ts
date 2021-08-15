@@ -37,6 +37,7 @@ export class PatientFormComponent implements OnInit {
   }
 
   onSubmitForm(){
+    this.patientAlreadySaved = false;
     const formValue = this.patientForm.value;
     const newPatient = new Patient(
       formValue['given'],
